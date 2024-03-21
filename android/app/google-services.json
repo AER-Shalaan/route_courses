@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "932746279778",
+    "project_id": "route-courses-5aa5e",
+    "storage_bucket": "route-courses-5aa5e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932746279778:android:2fa94b0ffc016c72620a3b",
+        "android_client_info": {
+          "package_name": "com.example.route_courses"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDyGg3tT_S69BrLrdjfYN1955wj7KpA3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
