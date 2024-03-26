@@ -17,6 +17,7 @@ class BestSellingCourses extends StatelessWidget {
     return Container(
       width: width,
       height: height*0.10,
+      margin: EdgeInsets.symmetric(horizontal: width*0.02),
       decoration: BoxDecoration(color: themeProvider.theme == ThemeMode.dark?AppColors.homeContainerDarkColor:Colors.white,borderRadius: BorderRadius.circular(20)),
       child: Padding(
         padding: EdgeInsets.all(width*0.03),
@@ -32,7 +33,7 @@ class BestSellingCourses extends StatelessWidget {
                    child: Container(
                      height:double.infinity,
                      width: width*0.2,
-                     decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)),
+                     decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(10)),
                          image:DecorationImage(image: NetworkImage(course.image??"https://techsouthafrica.co.za/wp-content/uploads/2023/01/No-Image.jpg"),fit: BoxFit.fill)
                      ),
                    ),
@@ -57,8 +58,8 @@ class BestSellingCourses extends StatelessWidget {
               flex: 1,
               child: ElevatedButton(onPressed: (){}, child: Text("Join Now"
                   ,style:themeProvider.theme == ThemeMode.dark?
-              TextStyle(color: Colors.black,fontSize: 11,fontWeight: FontWeight.w700):
-              TextStyle(color: Colors.white,fontSize: 11,fontWeight: FontWeight.w700)
+              const TextStyle(color: Colors.black,fontSize: 11,fontWeight: FontWeight.w700):
+              const TextStyle(color: Colors.white,fontSize: 11,fontWeight: FontWeight.w700)
               )),
             )
           ],

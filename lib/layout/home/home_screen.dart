@@ -30,60 +30,57 @@ class _HomeScreenState extends State<HomeScreen> {
       extendBody: true,
       resizeToAvoidBottomInset:false,
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: height*0.02),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: width*0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(width: width*0.01),
-                      Image.asset(themeProvider.theme==ThemeMode.dark?"assets/images/miniRoutelight.png":"assets/images/miniRoute.png"),
-                      SizedBox(width: width*0.03),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Welocme to Route",style: Theme.of(context).textTheme.titleLarge),
-                          SizedBox(height: height*0.01),
-                          Text("Enjoy our courses",style: Theme.of(context).textTheme.displayLarge)
-                        ],
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      IconButton(onPressed: (){
-                        themeProvider.changeTheme(themeProvider.theme == ThemeMode.dark?ThemeMode.light:ThemeMode.dark);
-                        }, icon: SvgPicture.asset(
-                          themeProvider.theme== ThemeMode.light?"assets/svg/Vector.svg":"assets/svg/mingcute_sun-fill.svg")),
-                      IconButton(onPressed: ()async{
-                        DialogUtils.showLoadingDialog(context);
-                        await myAuthProvider.signOut();
-                        DialogUtils.hideLoading(context);
-                        Navigator.pushReplacementNamed(context, LoginScreen.routeName);
-                        }, icon: SvgPicture.asset(
-                          themeProvider.theme== ThemeMode.light?"assets/svg/blackSignOut.svg":"assets/svg/SignOut.svg")
-                      )
-                    ],
-                  )
-
-                ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: height*0.02),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width*0.02),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        SizedBox(width: width*0.01),
+                        Image.asset(themeProvider.theme==ThemeMode.dark?"assets/images/miniRoutelight.png":"assets/images/miniRoute.png"),
+                        SizedBox(width: width*0.03),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Welocme to Route",style: Theme.of(context).textTheme.titleLarge),
+                            SizedBox(height: height*0.01),
+                            Text("Enjoy our courses",style: Theme.of(context).textTheme.displayLarge)
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        IconButton(onPressed: (){
+                          themeProvider.changeTheme(themeProvider.theme == ThemeMode.dark?ThemeMode.light:ThemeMode.dark);
+                          }, icon: SvgPicture.asset(
+                            themeProvider.theme== ThemeMode.light?"assets/svg/Vector.svg":"assets/svg/mingcute_sun-fill.svg")),
+                        IconButton(onPressed: ()async{
+                          DialogUtils.showLoadingDialog(context);
+                          await myAuthProvider.signOut();
+                          DialogUtils.hideLoading(context);
+                          Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+                          }, icon: SvgPicture.asset(
+                            themeProvider.theme== ThemeMode.light?"assets/svg/blackSignOut.svg":"assets/svg/SignOut.svg")
+                        )
+                      ],
+                    )
+          
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: height*0.04),
-            Padding(
-              padding:EdgeInsets.all(height*0.02),
-              child: Row(children: [Text("Featured ",style: Theme.of(context).textTheme.labelLarge),Text("Courses",style: Theme.of(context).textTheme.displayMedium)],),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 10),
-              color: Colors.transparent,
-              height: height*0.31,
-              child: FutureBuilder(
+              SizedBox(height: height*0.02),
+              Padding(
+                padding:EdgeInsets.all(height*0.02),
+                child: Row(children: [Text("Featured ",style: Theme.of(context).textTheme.labelLarge),Text("Courses",style: Theme.of(context).textTheme.displayMedium)],),
+              ),
+              FutureBuilder(
                   future: FireStoreHelper.getAllCourses(),
                   builder: (context , snapshot){
                 if(snapshot.connectionState == ConnectionState.waiting){
@@ -106,33 +103,32 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 }
                 List<Course> courses = snapshot.data??[];
-                return ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => FeatureCourses(course: courses[index]),
-                    separatorBuilder:(context, index) => SizedBox(width: width*0.04),
-                    itemCount: courses.length);
+                return SizedBox(
+                  height: height*0.26,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => FeatureCourses(course: courses[index]),
+                      separatorBuilder:(context, index) => SizedBox(width: width*0.02),
+                      itemCount: courses.length),
+                );
 
               }),
-            ),
-            SizedBox(height: height*0.06),
-            Padding(
-              padding:EdgeInsets.all(height*0.02),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween
-                  ,children: [
-                Row(
-                  children: [
-                    Text("Best Selling ",style: Theme.of(context).textTheme.labelLarge),Text("Courses",style: Theme.of(context).textTheme.displayMedium)
-                  ],
-                ),
-                Text("view All",style: Theme.of(context).textTheme.displaySmall)
-              ]),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 10),
-              color: Colors.transparent,
-              height: height*0.3,
-              child: FutureBuilder(
+              SizedBox(height: height*0.02),
+          
+              Padding(
+                padding:EdgeInsets.all(height*0.02),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween
+                    ,children: [
+                  Row(
+                    children: [
+                      Text("Best Selling ",style: Theme.of(context).textTheme.labelLarge),Text("Courses",style: Theme.of(context).textTheme.displayMedium)
+                    ],
+                  ),
+                  Text("view All",style: Theme.of(context).textTheme.displaySmall)
+                ]),
+              ),
+              FutureBuilder(
                   future: FireStoreHelper.getBestSellingCourses(),
                   builder: (context , snapshot){
                     if(snapshot.connectionState == ConnectionState.waiting){
@@ -156,14 +152,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                     List<Course> courses = snapshot.data??[];
                     return ListView.separated(
-                        scrollDirection: Axis.vertical,
+                       shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) => BestSellingCourses(course: courses[index]),
                         separatorBuilder:(context, index) => SizedBox(height: height*0.02),
                         itemCount: courses.length);
 
                   }),
-            ),
-          ],
+              SizedBox(height: height*0.01)
+            ],
+          ),
         ),
       ),
     );

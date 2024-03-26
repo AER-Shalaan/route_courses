@@ -69,7 +69,7 @@ class AppTheme{
           decorationStyle: TextDecorationStyle.solid
         )
     ),
-    elevatedButtonTheme: const ElevatedButtonThemeData(style: ButtonStyle(backgroundColor:MaterialStatePropertyAll(AppColors.primaryColor),elevation: MaterialStatePropertyAll(20))),
+    elevatedButtonTheme: const ElevatedButtonThemeData(style: ButtonStyle(backgroundColor:MaterialStatePropertyAll(AppColors.primaryColor))),
 
     colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primaryColor,
@@ -150,7 +150,7 @@ class AppTheme{
 
 
       ),
-      elevatedButtonTheme: ElevatedButtonThemeData(style: ButtonStyle(backgroundColor:MaterialStatePropertyAll(AppColors.whiteTitleColor),elevation: MaterialStatePropertyAll(20))),
+      elevatedButtonTheme: ElevatedButtonThemeData(style: ButtonStyle(backgroundColor:MaterialStatePropertyAll(AppColors.whiteTitleColor))),
 
       colorScheme: ColorScheme.fromSeed(
           seedColor: AppColors.primaryColor,
